@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-base.syncroRmm",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Productivity"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://github.com/davejlong/n8n-nodes-syncrormm"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/davejlong/n8n-nodes-syncrormm"
+			}
+		]
+	}
+}
