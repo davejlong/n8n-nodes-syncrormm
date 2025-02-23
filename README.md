@@ -2,12 +2,34 @@
 
 *Warning: This node is still in very early development and is not expected to be very functional yet.*
 
-An n8n community node to work with the Syncro RMM API within n8n workflows.
+This is an n8n community node. It lets you use _app/service name_ in your n8n workflows.
 
+[Installation](#installation)  
+[Operations](#operations)  
+[Credentials](#credentials)  <!-- delete if no auth needed -->  
+[Compatibility](#compatibility)  
+[Usage](#usage)  <!-- delete if not using this section -->  
+[Resources](#resources)  
+[Version history](#version-history)  <!-- delete if not using this section -->  
+[Why not the build-in-node?](#why-not-the-built-in-node)
+[Funding](#funding)
 
 ## Installation
 
-Install the node by following [n8n's community node documentation](https://docs.n8n.io/integrations/community-nodes/installation/).
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
+
+## Operations
+
+## Credentials
+
+## Compatibility
+
+## Usage
+
+## Resources
+
+* [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
+* [Syncro RMM API documentation](https://api-docs.syncromsp.com/)
 
 ## Why not the built-in node?
 
