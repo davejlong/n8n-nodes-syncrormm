@@ -56,6 +56,9 @@ export const assetsOperations: INodeProperties[] = [
               }
             }
           },
+          send: {
+            paginate: true
+          },
           output: {
             postReceive: [
               {
@@ -96,4 +99,76 @@ export const assetsFields: INodeProperties[] = [
       }
     }
   },
+  // ---------------------------------
+  // assets:getAll
+  // ---------------------------------
+  {
+    displayName: 'Filters',
+    name: 'filters',
+    type: 'collection',
+    placeholder: 'Add Filter',
+    default: {},
+    displayOptions: {
+      show: {
+        resource: ['assets'],
+        operation: ['getAll']
+      }
+    },
+    options: [
+      {
+        displayName: 'Customer ID',
+        name: 'customerId',
+        type: 'number',
+        default: undefined,
+        description: 'Filter assets by Customer ID',
+        routing: {
+          send: {
+            type: 'query',
+            property: 'customer_id'
+          }
+        }
+      },
+      {
+        displayName: 'Asset Type ID',
+        name: 'assetTypeId',
+        type: 'number', 
+        default: undefined,
+        description: 'Filter assets by Asset Type',
+        routing: {
+          send: {
+            type: 'query',
+            property: 'asset_type_id'
+          }
+        }
+      },
+      // Asset Search ID is exclusive and can't be
+      // combined with any other paramters in Syncro.
+      {
+        displayName: 'Asset Search ID',
+        name: 'assetSearchId',
+        type: 'number',
+        default: undefined,
+        description: 'Filter assets by Saved Asset Search',
+        routing: {
+          send: {
+            type: 'query',
+            property: 'asset_search_id'
+          }
+        }
+      },
+      {
+        displayName: 'Query',
+        name: 'query',
+        type: 'string',
+        default: undefined,
+        description: 'Filter customers by a search query',
+        routing: {
+          send: {
+            type: 'query',
+            property: 'query'
+          }
+        }
+      },
+    ]
+  }
 ]
