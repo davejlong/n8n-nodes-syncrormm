@@ -60,32 +60,18 @@ export const ticketCreateDescription: TicketProperties = [
 			// 	default: '',
 			// },
 			{
-				displayName: 'Issue Type',
+				displayName: 'Issue Type Name or ID',
 				name: 'issueType',
 				type: 'options',
-				options: [
-					{
-						name: 'Contract Work',
-						value: 'Contract Work',
-					},
-					{
-						name: 'Network Project',
-						value: 'Network Project',
-					},
-					{
-						name: 'Other',
-						value: 'Other',
-					},
-					{
-						name: 'Regular Maintenance',
-						value: 'Regular Maintenance',
-					},
-					{
-						name: 'Remote Support',
-						value: 'Remote Support',
-					},
-				],
-				default: 'Contract Work',
+				description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
+				typeOptions: {
+					loadOptionsMethod: 'getTicketTypeOptions',
+					loadOptionsDependsOn: ['includeBlank'],
+					loadOptionsParameters: {
+						includeBlank: false
+					}
+				},
+				default: '',
 			},
 			{
 				displayName: 'Status Name or ID',

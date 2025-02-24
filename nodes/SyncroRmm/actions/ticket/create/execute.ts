@@ -19,11 +19,11 @@ export async function createTicket(
 	let body = {} as IDataObject;
 
 	body = {
-		asset_id: assetId,
+		asset_ids: [ assetId ],
+		contact_id: contactId,
 		//due_date: dueDate,
 		problem_type: issueType,
 		status,
-		contact_id: contactId,
 	};
 
 	body.customer_id = id;
