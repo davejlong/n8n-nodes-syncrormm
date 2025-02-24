@@ -2,7 +2,7 @@ import type { CustomerProperties } from "../../interfaces";
 
 export const customerGetAllDescription: CustomerProperties = [
 	{
-		displayName: 'Return all',
+		displayName: 'Return All',
 		name: 'returnAll',
 		type: 'boolean',
 		displayOptions: {
@@ -13,7 +13,7 @@ export const customerGetAllDescription: CustomerProperties = [
 		},
 		default: false,
 		noDataExpression: true,
-		description: 'Whether to return all results to only up to a given limit',
+		description: 'Whether to return all results or only up to a given limit',
 	},
 	{
 		displayName: 'Limit',
@@ -27,7 +27,7 @@ export const customerGetAllDescription: CustomerProperties = [
 				returnAll: [ false ],
 			},
 		},
-		default: 25,
+		default: 50,
 		description: 'Max number of results to return',
 	},
 	{

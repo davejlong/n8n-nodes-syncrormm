@@ -3,7 +3,10 @@ import { NodeApiError } from 'n8n-workflow';
 
 import type { SyncroRmm } from './interfaces';
 
+import * as alert from './alert';
+import * as contact from './contact';
 import * as customer from './customer';
+import * as ticket from './ticket';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const items = this.getInputData();
@@ -17,8 +20,19 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 		const syncroRmm = { resource, operation } as SyncroRmm;
 
 		try {
-			if (resource == 'customer') {
-				responseData = await customer[syncroRmm.operation].execute.call(this, i);
+			switch(resource) {
+				case "alert":
+					responseData = await alert[syncroRmm.operation].execute.call(this, i);
+					break;
+				case "contact":
+					responseData = await contact[syncroRmm.operation].execute.call(this, i);
+					break;
+				case "customer":
+					responseData = await customer[syncroRmm.operation].execute.call(this, i);
+					break;
+				case "ticket":
+					responseData = await ticket[syncroRmm.operation].execute.call(this, i);
+					break;
 			}
 
 			const executionData = this.helpers.constructExecutionMetaData(responseData, {

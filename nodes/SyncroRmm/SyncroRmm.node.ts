@@ -11,7 +11,12 @@ import {
 import { router } from './actions/router';
 import { validateCredentials } from './transport';
 
+import { getTicketStatusOptions } from './methods/loadOptions';
+
+import * as alert from './actions/alert';
 import * as customer from './actions/customer';
+import * as contact from './actions/contact';
+import * as ticket from './actions/ticket';
 
 export class SyncroRmm implements INodeType {
   description: INodeTypeDescription = {
@@ -49,18 +54,35 @@ export class SyncroRmm implements INodeType {
 				noDataExpression: true,
 				options: [
 					{
+						name: 'Alert',
+						value: 'alert',
+					},
+					{
+						name: 'Contact',
+						value: 'contact',
+					},
+					{
 						name: 'Customer',
 						value: 'customer',
-					}
+					},
+					{
+						name: 'Ticket',
+						value: 'ticket',
+					},
 				],
 				default: 'customer',
 			},
-			...customer.descriptions
+			...alert.descriptions,
+			...contact.descriptions,
+			...customer.descriptions,
+			...ticket.descriptions,
     ]
   };
 
 methods = {
-	loadOptions: {},
+	loadOptions: {
+		getTicketStatusOptions
+	},
 	credentialTest: {
 		async syncroRmmApiCredentialTest(
 			this: ICredentialTestFunctions,

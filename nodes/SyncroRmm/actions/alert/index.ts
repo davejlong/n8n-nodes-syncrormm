@@ -1,9 +1,10 @@
-import { INodeProperties } from 'n8n-workflow';
+import type { INodeProperties } from 'n8n-workflow';
+
+import * as create from './create';
 import * as get from './get';
 import * as getAll from './getAll';
-import * as create from './create';
 
-export { get, getAll, create };
+export { create, get, getAll };
 
 export const descriptions = [
 	{
@@ -13,32 +14,32 @@ export const descriptions = [
 		noDataExpression: true,
 		displayOptions: {
 			show: {
-				resource: ['customer'],
+				resource: ['alert'],
 			},
 		},
 		options: [
 			{
 				name: 'Create',
 				value: 'create',
-				description: 'Create a new customer',
-				action: 'Create a customer',
+				description: 'Create new RMM Alert',
+				action: 'Create an RMM alert',
 			},
 			{
 				name: 'Get',
 				value: 'get',
-				description: 'Retrieve customer',
-				action: 'Get a customer',
+				description: 'Retrieve RMM Alert',
+				action: 'Get an RMM alert',
 			},
 			{
 				name: 'Get Many',
 				value: 'getAll',
-				description: 'Retrieve many customers',
-				action: 'Get many customers',
+				description: 'Retrieve many RMM Alerts',
+				action: 'Get many RMM alerts',
 			},
 		],
-		default: 'getAll'
+		default: 'getAll',
 	},
+	...create.description,
 	...get.description,
 	...getAll.description,
-	...create.description
 ] as INodeProperties[];
