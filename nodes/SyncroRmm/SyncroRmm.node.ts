@@ -1,10 +1,17 @@
 import {
-  INodeType,
-  INodeTypeDescription
+	ICredentialDataDecryptedObject,
+	ICredentialsDecrypted,
+	ICredentialTestFunctions,
+  IExecuteFunctions,
+	INodeCredentialTestResult,
+	INodeType,
+  INodeTypeDescription,
 } from 'n8n-workflow';
 
-import * as descriptions from './descriptions';
-import { resourceProperty } from './descriptions/resources';
+import { router } from './actions/router';
+import { validateCredentials } from './transport';
+
+import * as customer from './actions/customer';
 
 export class SyncroRmm implements INodeType {
   description: INodeTypeDescription = {
@@ -35,11 +42,50 @@ export class SyncroRmm implements INodeType {
       }
     },
     properties: [
-      resourceProperty,
-      ...descriptions.assetsOperations,
-      ...descriptions.assetsFields,
-      ...descriptions.customersOperations,
-      ...descriptions.customersFields,
+			{
+				displayName: 'Resource',
+				name: 'resource',
+				type: 'options',
+				noDataExpression: true,
+				options: [
+					{
+						name: 'Customer',
+						value: 'customer',
+					}
+				],
+				default: 'customer',
+			},
+			...customer.descriptions
     ]
-  }
+  };
+
+methods = {
+	loadOptions: {},
+	credentialTest: {
+		async syncroRmmApiCredentialTest(
+			this: ICredentialTestFunctions,
+			credential: ICredentialsDecrypted,
+		): Promise<INodeCredentialTestResult> {
+			try {
+				await validateCredentials.call(this, credential.data as ICredentialDataDecryptedObject);
+			} catch (error) {
+				if (error.statusCode === 401) {
+					return {
+						status: 'Error',
+						message: 'The API Key included in the request is invalid',
+					};
+				}
+			};
+
+			return {
+				status: 'OK',
+				message: 'Connection successful!',
+			};
+		},
+	},
+};
+
+	async execute(this: IExecuteFunctions) {
+		return await router.call(this);
+	}
 }
