@@ -34,7 +34,7 @@ export class SyncroRmm implements INodeType {
     outputs: ['main'],
     credentials: [
       {
-        name: 'SyncroRmmApi',
+        name: 'syncroRmmApi',
         required: true
       }
     ],

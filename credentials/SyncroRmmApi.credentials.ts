@@ -1,7 +1,7 @@
 import type { IAuthenticateGeneric, ICredentialTestRequest, ICredentialType, INodeProperties } from 'n8n-workflow';
 
 export class SyncroRmmApi implements ICredentialType {
-	name = 'SyncroRmmApi';
+	name = 'syncroRmmApi';
 
 	displayName = 'Syncro RMM API';
 

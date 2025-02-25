@@ -22,7 +22,7 @@ export async function apiRequest(
 	body: IDataObject | GenericValue | GenericValue[] = {},
 	query: IDataObject = {},
 ) {
-	const credentials = await this.getCredentials('SyncroRmmApi');
+	const credentials = await this.getCredentials('syncroRmmApi');
 
 	query.api_key = credentials.apiKey;
 
