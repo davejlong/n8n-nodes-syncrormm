@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "n8n node to work with the Syncro RMM API",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "syncrormm",
+    "syncromsp"
   ],
   "license": "MIT",
   "homepage": "https://github.com/davejlong/n8n-nodes-syncrormm",
