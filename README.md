@@ -23,6 +23,11 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 * Create new alerts
 * Get RMM alerts with filtering support
 
+### Assets
+
+* Create new assets
+* Get assets with filtering support
+
 ### Contacts
 
 * Create new contacts
@@ -44,6 +49,9 @@ This node requires your Syncro tenant subdomain and an API key.
 
 API key requires the following permissions:
 
+* Assets - View Details
+* Assets - List/Search
+* Assets - Create
 * Contacts - Import
 * Customers - Create
 * Customers - List/Search
