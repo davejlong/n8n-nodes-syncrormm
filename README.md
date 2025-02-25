@@ -2,15 +2,13 @@
 
 *Warning: This node is still in very early development and is not expected to be very functional yet.*
 
-This is an n8n community node. It lets you use _app/service name_ in your n8n workflows.
+This is an n8n community node to work with the Syncro RMM API in your n8n workflows.
 
 [Installation](#installation)  
 [Operations](#operations)  
 [Credentials](#credentials)  <!-- delete if no auth needed -->  
 [Compatibility](#compatibility)  
-[Usage](#usage)  <!-- delete if not using this section -->  
 [Resources](#resources)  
-[Version history](#version-history)  <!-- delete if not using this section -->  
 [Why not the build-in-node?](#why-not-the-built-in-node)
 [Funding](#funding)
 
@@ -20,11 +18,45 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
+### Alerts
+
+* Create new alerts
+* Get RMM alerts with filtering support
+
+### Contacts
+
+* Create new contacts
+* Get contacts with filtering support
+
+### Customers
+
+* Create new customers
+* Get customers with filtering support
+
+### Tickets
+
+* Create tickets with populated dropdowns for type and status
+* Get tickets with filtering support
+
 ## Credentials
+
+This node requires your Syncro tenant subdomain and an API key. 
+
+API key requires the following permissions:
+
+* Contacts - Import
+* Customers - Create
+* Customers - List/Search
+* Customers - View Detail
+* Tickets - List/Search
+* Tickets - View Details
+* Tickets - Create
+* RMM Alerts - List
+* RMM Alerts - Create
 
 ## Compatibility
 
-## Usage
+Tested against n8n 1.79.3+
 
 ## Resources
 
