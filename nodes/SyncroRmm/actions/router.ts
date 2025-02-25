@@ -4,6 +4,7 @@ import { NodeApiError } from 'n8n-workflow';
 import type { SyncroRmm } from './interfaces';
 
 import * as alert from './alert';
+import * as asset from './asset';
 import * as contact from './contact';
 import * as customer from './customer';
 import * as ticket from './ticket';
@@ -23,6 +24,9 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 			switch(resource) {
 				case "alert":
 					responseData = await alert[syncroRmm.operation].execute.call(this, i);
+					break;
+				case "asset":
+					responseData = await asset[syncroRmm.operation].execute.call(this, i);
 					break;
 				case "contact":
 					responseData = await contact[syncroRmm.operation].execute.call(this, i);

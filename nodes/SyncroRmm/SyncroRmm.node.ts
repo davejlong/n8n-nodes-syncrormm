@@ -14,6 +14,7 @@ import { validateCredentials } from './transport';
 import { getTicketStatusOptions, getTicketTypeOptions } from './methods/loadOptions';
 
 import * as alert from './actions/alert';
+import * as asset from './actions/asset';
 import * as customer from './actions/customer';
 import * as contact from './actions/contact';
 import * as ticket from './actions/ticket';
@@ -58,6 +59,10 @@ export class SyncroRmm implements INodeType {
 						value: 'alert',
 					},
 					{
+						name: 'Asset',
+						value: 'asset',
+					},
+					{
 						name: 'Contact',
 						value: 'contact',
 					},
@@ -73,6 +78,7 @@ export class SyncroRmm implements INodeType {
 				default: 'customer',
 			},
 			...alert.descriptions,
+			...asset.descriptions,
 			...contact.descriptions,
 			...customer.descriptions,
 			...ticket.descriptions,
