@@ -9,6 +9,7 @@ import type {
 	IHttpRequestOptions,
 	JsonObject,
 	IHttpRequestMethods,
+	INodeExecutionData,
 } from 'n8n-workflow';
 import { NodeApiError } from 'n8n-workflow';
 
@@ -81,4 +82,20 @@ export async function validateCredentials(
 	};
 
 	return await this.helpers.request(options);
+}
+
+export async function syncroGetRequest(
+	this: IExecuteFunctions,
+	endpoint: string,
+	responseKey?: string,
+): Promise<INodeExecutionData[]> {
+	const qs = {} as IDataObject;
+	const requestMethod = 'GET';
+	const body = {} as IDataObject;
+
+	const responseData = await apiRequest.call(this, requestMethod, endpoint, body, qs);
+
+	let response = responseData;
+	if (responseKey) { response = responseData[responseKey]; }
+	return this.helpers.returnJsonArray(response as IDataObject);
 }
