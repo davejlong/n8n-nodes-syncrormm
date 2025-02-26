@@ -22,15 +22,12 @@ export async function getAll(
 		qs.status = 'all';
 	}
 
-	if (!returnAll) {
-		qs.per_page = this.getNodeParameter('limit', index);
-	}
-
 	let responseData;
 	if (returnAll) {
 		responseData = await apiRequestAllItems.call(this, requestMethod, endpoint, body, qs);
 		return this.helpers.returnJsonArray(responseData);
 	} else {
+		qs.per_page = this.getNodeParameter('limit', index);
 		responseData = await apiRequest.call(this, requestMethod, endpoint, body, qs);
 		return this.helpers.returnJsonArray(responseData.rmm_alerts as IDataObject[]);
 	}

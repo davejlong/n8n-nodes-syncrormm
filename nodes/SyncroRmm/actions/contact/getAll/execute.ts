@@ -7,19 +7,25 @@ export async function getAll(
 	index: number,
 ): Promise<INodeExecutionData[]> {
 	const returnAll = this.getNodeParameter('returnAll', index);
+	const filters = this.getNodeParameter('filters', index);
 
-	const qs = {} as IDataObject;
+	let qs = {} as IDataObject;
 	const requestMethod = 'GET';
 	const endpoint = 'contacts';
 	const body = {} as IDataObject;
+
+	if (filters) {
+		qs = filters;
+		if (qs.customerId) { qs.customer_id = qs.customerId; }
+	}
 
 	let responseData;
 	if (returnAll) {
 		responseData = await apiRequestAllItems.call(this, requestMethod, endpoint, body, qs);
 		return this.helpers.returnJsonArray(responseData);
 	} else {
-		const limit = this.getNodeParameter('limit', index);
+		qs.per_page = this.getNodeParameter('limit', index);
 		responseData = await apiRequest.call(this, requestMethod, endpoint, body, qs);
-		return this.helpers.returnJsonArray(responseData.contacts.splice(0, limit) as IDataObject[]);
+		return this.helpers.returnJsonArray(responseData.contacts as IDataObject[]);
 	}
 }
