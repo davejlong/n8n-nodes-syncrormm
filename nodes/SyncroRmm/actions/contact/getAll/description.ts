@@ -32,4 +32,25 @@ export const contactGetAllDescription: ContactProperties = [
 		},
 		default: 50,
 	},
+	{
+		displayName: 'Filters',
+		name: 'filters',
+		type: 'collection',
+		placeholder: 'Add Filter',
+		displayOptions: {
+			show: {
+				resource: ['contact'],
+				operation: ['getAll']
+			},
+		},
+		default: {},
+		options: [
+			{
+				displayName: 'Customer ID',
+				name: 'customerId',
+				type: 'string',
+				default: ''
+			}
+		],
+	},
 ];

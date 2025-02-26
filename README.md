@@ -4,13 +4,13 @@
 
 This is an n8n community node to work with the Syncro RMM API in your n8n workflows.
 
-[Installation](#installation)  
-[Operations](#operations)  
-[Credentials](#credentials)  <!-- delete if no auth needed -->  
-[Compatibility](#compatibility)  
-[Resources](#resources)  
-[Why not the build-in-node?](#why-not-the-built-in-node)
-[Funding](#funding)
+- [Installation](#installation)
+- [Operations](#operations)
+- [Credentials](#credentials)
+- [Compatibility](#compatibility)
+- [Resources](#resources)
+- [Why not the built-in node?](#why-not-the-built-in-node)
+- [Funding](#funding)
 
 ## Installation
 
