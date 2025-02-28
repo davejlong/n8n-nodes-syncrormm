@@ -1,9 +1,12 @@
 import { INodeProperties } from 'n8n-workflow';
+
 import * as get from './get';
 import * as getAll from './getAll';
 import * as create from './create';
+import * as update from './update';
+import { customerFields } from './customerFields';
 
-export { get, getAll, create };
+export { get, getAll, create, update };
 
 export const descriptions = [
 	{
@@ -35,10 +38,18 @@ export const descriptions = [
 				description: 'Retrieve many customers',
 				action: 'Get many customers',
 			},
+			{
+				name: 'Update',
+				value: 'update',
+				description: 'Update customer',
+				action: 'Update a customer',
+			}
 		],
 		default: 'getAll'
 	},
-	...get.description,
+	...customerFields,
+	// ...get.description,
 	...getAll.description,
-	...create.description
+	// ...create.description,
+	// ...update.description,
 ] as INodeProperties[];

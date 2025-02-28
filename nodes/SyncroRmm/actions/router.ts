@@ -21,7 +21,7 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 		const syncroRmm = { resource, operation } as SyncroRmm;
 
 		try {
-			switch(resource) {
+			switch(syncroRmm.resource) {
 				case "alert":
 					responseData = await alert[syncroRmm.operation].execute.call(this, i);
 					break;

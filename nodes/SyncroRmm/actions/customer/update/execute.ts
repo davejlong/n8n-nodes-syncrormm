@@ -1,15 +1,16 @@
 import { IDataObject, IExecuteFunctions, INodeExecutionData, JsonObject, NodeApiError } from "n8n-workflow";
 import { apiRequest } from "../../../transport";
 
-export async function addCustomer(
+export async function updateCustomer(
 	this: IExecuteFunctions,
 	index: number
 ): Promise<INodeExecutionData[]> {
-	const email = this.getNodeParameter('email', index) as IDataObject;
+	const id = this.getNodeParameter('customerId', index) as IDataObject;
 	const {
 		address,
 		businessName,
 		firstName,
+		email,
 		getSms,
 		invoiceCcEmails,
 		lastName,
@@ -21,8 +22,8 @@ export async function addCustomer(
 	} = this.getNodeParameter('additionalFields', index);
 
 	const qs = {} as IDataObject;
-	const requestMethod = 'POST';
-	const endpoint = 'customers';
+	const requestMethod = 'PUT';
+	const endpoint = `customers/${id}`
 	let body = {} as IDataObject;
 	let addressData = address as IDataObject;
 
