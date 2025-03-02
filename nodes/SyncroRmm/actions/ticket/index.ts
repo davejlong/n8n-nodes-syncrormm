@@ -3,8 +3,10 @@ import type { INodeProperties } from 'n8n-workflow';
 import * as create from './create';
 import * as get from './get';
 import * as getAll from './getAll';
+import * as update from './update';
+import { ticketDescription } from './description';
 
-export { create, get, getAll };
+export { create, get, getAll, update };
 
 export const operations: INodeProperties[] = [
 	{
@@ -36,13 +38,18 @@ export const operations: INodeProperties[] = [
 				description: 'Retrieve many tickets',
 				action: 'Get many tickets',
 			},
+			{
+				name: 'Update',
+				value: 'update',
+				description: 'Update a ticket',
+				action: 'Update a ticket',
+			},
 		],
 		default: 'getAll',
 	},
 ];
 
 export const descriptions = [
-	...create.description,
+	...ticketDescription,
 	...getAll.description,
-	...get.description,
 ] as INodeProperties[];
