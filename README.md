@@ -27,21 +27,25 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 * Create new assets
 * Get assets with filtering support
+* Update existing assets
 
 ### Contacts
 
 * Create new contacts
 * Get contacts with filtering support
+* Update existing assets
 
 ### Customers
 
 * Create new customers
 * Get customers with filtering support
+* Update existing customers
 
 ### Tickets
 
 * Create tickets with populated dropdowns for type and status
 * Get tickets with filtering support
+* Update existing tickets
 
 ## Credentials
 
