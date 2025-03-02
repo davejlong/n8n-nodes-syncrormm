@@ -15,6 +15,20 @@ export const ticketGetAllDescription: TicketProperties = [
 		default: {},
 		options: [
 			{
+				displayName: 'Contact ID',
+				name: 'contactId',
+				type: 'string',
+				default: '',
+				description: 'Retrieve tickets for contact ID'
+			},
+			{
+				displayName: 'Customer ID',
+				name: 'customerId',
+				type: 'string',
+				default: '',
+				description: 'Retrieve tickets for customer ID'
+			},
+			{
 				displayName: 'Search Query',
 				name: 'query',
 				type: 'string',
@@ -23,40 +37,25 @@ export const ticketGetAllDescription: TicketProperties = [
 				description: 'Search query, it can be anything related to ticket data like user etc',
 			},
 			{
-				displayName: 'Status',
+				displayName: 'Status Name or ID',
 				name: 'status',
 				type: 'options',
-				options: [
-					{
-						name: 'Customer Reply',
-						value: 'Customer Reply',
-					},
-					{
-						name: 'In Progress',
-						value: 'In Progress',
-					},
-					{
-						name: 'New',
-						value: 'New',
-					},
-					{
-						name: 'Resolved',
-						value: 'Resolved',
-					},
-					{
-						name: 'Scheduled',
-						value: 'Scheduled',
-					},
-					{
-						name: 'Waiting for Parts',
-						value: 'Waiting for Parts',
-					},
-					{
-						name: 'Waiting on Customer',
-						value: 'Waiting on Customer',
-					},
-				],
-				default: 'New',
+				typeOptions: {
+					loadOptionsMethod: 'getTicketStatusOptions',
+					loadOptionsDependsOn: ['includeBlank'],
+					loadOptionsParameters: {
+						includeBlank: false
+					}
+				},
+				default: '',
+				description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
+			},
+			{
+				displayName: 'Ticket Search ID',
+				name: 'ticketSearchId',
+				type: 'string',
+				default: '',
+				description: 'Tickets matching a saved ticket search',
 			},
 		],
 	},

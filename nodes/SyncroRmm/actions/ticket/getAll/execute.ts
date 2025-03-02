@@ -17,6 +17,9 @@ export async function getAll(
 	if (filters) {
 		qs = filters;
 	}
+	if (qs.contactId) { qs.contact_id = qs.contactId; }
+	if (qs.customerId) { qs.customer_id = qs.customerId; }
+	if (qs.ticketSearchId) { qs.ticket_search_id = qs.ticketSearchId; }
 
 	let responseData;
 	if (returnAll) {
