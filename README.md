@@ -1,7 +1,5 @@
 # n8n-nodes-syncrormm
 
-*Warning: This node is still in very early development and is not expected to be very functional yet.*
-
 This is an n8n community node to work with the Syncro RMM API in your n8n workflows.
 
 - [Installation](#installation)
