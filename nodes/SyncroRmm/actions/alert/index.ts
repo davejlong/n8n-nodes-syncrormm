@@ -3,6 +3,7 @@ import type { INodeProperties } from 'n8n-workflow';
 import * as create from './create';
 import * as get from './get';
 import * as getAll from './getAll';
+import { alertDescription } from './description';
 
 export { create, get, getAll };
 export const operations: INodeProperties[] = [
@@ -41,7 +42,6 @@ export const operations: INodeProperties[] = [
 ];
 
 export const descriptions = [
-	...create.description,
-	...get.description,
+	...alertDescription,
 	...getAll.description,
 ] as INodeProperties[];
