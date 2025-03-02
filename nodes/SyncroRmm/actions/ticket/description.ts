@@ -53,7 +53,7 @@ export const ticketDescription: TicketProperties = [
 		displayOptions: {
 			show: {
 				resource: ['ticket'],
-				operation: ['get'],
+				operation: ['get', 'update'],
 			},
 		},
 		default: '',
@@ -99,6 +99,13 @@ export const ticketDescription: TicketProperties = [
 		default: {},
 		options: [
 			...ticketCommonFields,
+			{
+				displayName: 'Comment',
+				name: 'comment',
+				type: 'string',
+				default: '',
+				description: 'Comment to add to the ticket',
+			},
 		],
 	},
 	{

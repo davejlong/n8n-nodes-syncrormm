@@ -40,6 +40,18 @@ export const alertDescription: AlertProperties = [
 		default: '',
 	},
 	{
+		displayName: 'Check Type',
+		name: 'checkType',
+		type: 'string',
+		displayOptions: {
+			show: {
+				resource: ['alert'],
+				operation: ['create'],
+			},
+		},
+		default: '',
+	},
+	{
 		displayName: 'Description',
 		name: 'description',
 		type: 'string',

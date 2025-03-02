@@ -1,4 +1,4 @@
-import type { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow';
+import { type IExecuteFunctions, type IDataObject, type INodeExecutionData } from 'n8n-workflow';
 
 import { apiRequest } from '../../../transport';
 
@@ -10,6 +10,7 @@ export async function createTicket(
 	const subject = this.getNodeParameter('subject', index) as IDataObject;
 	const {
 		assetId,
+		comment,
 		contactId,
 		issueType,
 		status,
@@ -27,6 +28,15 @@ export async function createTicket(
 		problem_type: issueType,
 		status,
 		subject,
+	};
+
+	if (comment) {
+		body.comments_attributes = [
+			{
+				subject: 'initial comment',
+				body: comment,
+			},
+		]
 	};
 
 	const responseData = await apiRequest.call(this, requestMethod, endpoint, body, qs);

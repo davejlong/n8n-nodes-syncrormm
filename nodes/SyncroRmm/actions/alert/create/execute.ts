@@ -8,7 +8,8 @@ export async function addAlert(
 ): Promise<INodeExecutionData[]> {
 	const customerId = this.getNodeParameter('customerId', index) as IDataObject;
 	const assetId = this.getNodeParameter('assetId', index) as IDataObject;
-	const description = this.getNodeParameter('description', index) as IDataObject;
+	const checkType = this.getNodeParameter('checkType', index) as IDataObject;
+	const description = this.getNodeParameter('description', index);
 	const additionalFields = this.getNodeParameter('additionalFields', index);
 
 	const qs = {} as IDataObject;
@@ -22,7 +23,8 @@ export async function addAlert(
 
 	body.customer_id = customerId;
 	body.asset_id = assetId;
-	body.description = description;
+	body.description = checkType;
+	body.formatted_output = description;
 
 	const responseData = await apiRequest.call(this, requestMethod, endpoint, body, qs);
 
