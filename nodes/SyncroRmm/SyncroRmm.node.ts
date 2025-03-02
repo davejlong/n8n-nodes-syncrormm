@@ -77,7 +77,7 @@ export class SyncroRmm implements INodeType {
 						value: 'ticket',
 					},
 				],
-				default: 'alert',
+				default: 'customer',
 			},
 			...alert.operations,
 			...asset.operations,

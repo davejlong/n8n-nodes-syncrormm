@@ -19,7 +19,6 @@ const ticketCommonFields: INodeProperties[] = [
 		displayName: 'Issue Type Name or ID',
 		name: 'issueType',
 		type: 'options',
-		description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
 		typeOptions: {
 			loadOptionsMethod: 'getTicketTypeOptions',
 			loadOptionsDependsOn: ['includeBlank'],
@@ -28,6 +27,7 @@ const ticketCommonFields: INodeProperties[] = [
 			}
 		},
 		default: '',
+		description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
 	},
 	{
 		displayName: 'Status Name or ID',
@@ -119,14 +119,12 @@ export const ticketDescription: TicketProperties = [
 				displayName: 'Customer ID',
 				name: 'customerId',
 				type: 'string',
-				required: true,
 				default: '',
 			},
 			{
 				displayName: 'Subject',
 				name: 'subject',
 				type: 'string',
-				required: true,
 				default: '',
 			},
 		],
