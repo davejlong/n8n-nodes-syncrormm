@@ -15,9 +15,11 @@ import { getTicketStatusOptions, getTicketTypeOptions } from './methods/loadOpti
 
 import * as alert from './actions/alert';
 import * as asset from './actions/asset';
-import * as customer from './actions/customer';
 import * as contact from './actions/contact';
+import * as customer from './actions/customer';
 import * as ticket from './actions/ticket';
+
+import { getAllCommonFields } from './methods/commonFields';
 
 export class SyncroRmm implements INodeType {
   description: INodeTypeDescription = {
@@ -75,8 +77,14 @@ export class SyncroRmm implements INodeType {
 						value: 'ticket',
 					},
 				],
-				default: 'customer',
+				default: 'alert',
 			},
+			...alert.operations,
+			...asset.operations,
+			...contact.operations,
+			...customer.operations,
+			...ticket.operations,
+			...getAllCommonFields,
 			...alert.descriptions,
 			...asset.descriptions,
 			...contact.descriptions,

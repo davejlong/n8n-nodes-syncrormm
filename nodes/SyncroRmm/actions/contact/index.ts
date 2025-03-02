@@ -3,10 +3,12 @@ import type { INodeProperties } from 'n8n-workflow';
 import * as create from './create';
 import * as get from './get';
 import * as getAll from './getAll';
+import * as update from './update';
+import { contactDescription } from './description';
 
-export { get, getAll, create };
+export { get, getAll, create, update };
 
-export const descriptions = [
+export const operations: INodeProperties[] = [
 	{
 		displayName: 'Operation',
 		name: 'operation',
@@ -36,10 +38,18 @@ export const descriptions = [
 				description: 'Retrieve many contacts',
 				action: 'Get many contacts',
 			},
+			{
+				name: 'Update',
+				value: 'update',
+				description: 'Update a contact',
+				action: 'Update a contact',
+			},
 		],
 		default: 'getAll',
 	},
-	...create.description,
-	...get.description,
+];
+
+export const descriptions = [
+	...contactDescription,
 	...getAll.description,
 ] as INodeProperties[];

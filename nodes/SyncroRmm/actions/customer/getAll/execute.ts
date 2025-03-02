@@ -19,6 +19,8 @@ export async function getAll(
 		if (qs.includeDisabled) { qs.include_disabled = qs.includeDisabled; }
 	}
 
+	this.logger.info(`Getting customers`, qs)
+
 	let responseData;
 	if (returnAll) {
 		responseData = await apiRequestAllItems.call(this, requestMethod, endpoint, body, qs);

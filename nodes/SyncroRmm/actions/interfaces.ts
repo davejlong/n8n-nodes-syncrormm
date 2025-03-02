@@ -6,9 +6,9 @@ import type {
 
 type SyncroRmmMap = {
 	alert: 'create' | 'get' | 'getAll';
-	asset: 'create' | 'get' | 'getAll';
+	asset: 'create' | 'get' | 'getAll' | 'update';
 	customer: 'create' | 'get' | 'getAll' | 'update';
-	contact: 'create' | 'get' | 'getAll';
+	contact: 'create' | 'get' | 'getAll' | 'update';
 	ticket: 'create' | 'get' | 'getAll';
 };
 

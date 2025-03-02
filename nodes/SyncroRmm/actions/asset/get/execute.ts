@@ -8,5 +8,5 @@ export async function getAsset(
 	const id = this.getNodeParameter('assetId', index) as string;
 	const endpoint = `customer_assets/${id}`;
 
-	return syncroGetRequest.call(this, endpoint, "asset");
+	return syncroGetRequest.call(this, endpoint, "properties");
 }

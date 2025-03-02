@@ -84,7 +84,19 @@ const customerCommonFields: INodeProperties[] = [
 	},
 ];
 
-export const customerFields: CustomerProperties = [
+export const customerDescription: CustomerProperties = [
+	{
+		displayName: 'Customer ID',
+		name: 'customerId',
+		type: 'string',
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['get', 'update'],
+			},
+		},
+		default: '',
+	},
 	{
 		displayName: 'Email',
 		name: 'email',
@@ -94,18 +106,6 @@ export const customerFields: CustomerProperties = [
 			show: {
 				resource: ['customer'],
 				operation: ['create'],
-			},
-		},
-		default: '',
-	},
-	{
-		displayName: 'Customer ID',
-		name: 'customerId',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: ['customer'],
-				operation: ['update', 'get'],
 			},
 		},
 		default: '',

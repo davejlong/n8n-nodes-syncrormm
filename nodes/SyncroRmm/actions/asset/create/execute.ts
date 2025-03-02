@@ -7,17 +7,17 @@ export async function addAsset(
 ): Promise<INodeExecutionData[]> {
 	const customerId = this.getNodeParameter('customerId', index) as IDataObject;
 	const assetTypeId = this.getNodeParameter('assetTypeId', index) as IDataObject;
-	const assetName = this.getNodeParameter('assetName', index) as IDataObject;
+	const name = this.getNodeParameter('name', index) as IDataObject;
 	const assetSerial = this.getNodeParameter('assetSerial', index) as IDataObject;
 
 	const qs = {} as IDataObject;
 	const requestMethod = 'POST';
 	const endpoint = 'rmm_alerts';
 	let body = {
-		customer_id: customerId,
-		asset_type_id: assetTypeId,
-		name: assetName,
 		asset_serial: assetSerial,
+		asset_type_id: assetTypeId,
+		customer_id: customerId,
+		name,
 	} as IDataObject;
 
 	const responseData = await apiRequest.call(this, requestMethod, endpoint, body, qs);

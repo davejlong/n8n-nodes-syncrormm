@@ -20,6 +20,7 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 
 		const syncroRmm = { resource, operation } as SyncroRmm;
 
+		this.logger.info(`Making ${syncroRmm.operation} for ${syncroRmm.resource}`);
 		try {
 			switch(syncroRmm.resource) {
 				case "alert":

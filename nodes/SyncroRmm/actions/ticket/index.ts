@@ -6,7 +6,7 @@ import * as getAll from './getAll';
 
 export { create, get, getAll };
 
-export const descriptions = [
+export const operations: INodeProperties[] = [
 	{
 		displayName: 'Operation',
 		name: 'operation',
@@ -39,6 +39,9 @@ export const descriptions = [
 		],
 		default: 'getAll',
 	},
+];
+
+export const descriptions = [
 	...create.description,
 	...getAll.description,
 	...get.description,

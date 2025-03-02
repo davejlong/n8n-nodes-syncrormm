@@ -1,23 +1,23 @@
-import type { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow';
+import { IDataObject, IExecuteFunctions, INodeExecutionData } from "n8n-workflow";
+import { apiRequest } from "../../../transport";
 
-import { apiRequest } from '../../../transport';
-
-export async function createContact(
+export async function updateContact(
 	this: IExecuteFunctions,
-	index: number,
+	index: number
 ): Promise<INodeExecutionData[]> {
-	const customerId = this.getNodeParameter('customerId', index) as IDataObject;
-	const email = this.getNodeParameter('email', index) as IDataObject;
+	const id = this.getNodeParameter('contactId', index) as IDataObject;
 	const {
 		address,
+		customerId,
+		email,
+		name,
 		notes,
-		phone,
-		name
+		phone
 	} = this.getNodeParameter('additionalFields', index);
 
 	const qs = {} as IDataObject;
-	const requestMethod = 'POST';
-	const endpoint = 'contacts';
+	const requestMethod = 'PUT';
+	const endpoint = `contacts/${id}`;
 	let body = {} as IDataObject;
 	let addressData = address as IDataObject;
 
@@ -37,5 +37,5 @@ export async function createContact(
 
 	const responseData = await apiRequest.call(this, requestMethod, endpoint, body, qs);
 
-	return this.helpers.returnJsonArray(responseData as IDataObject);
+	return this.helpers.returnJsonArray(responseData.asset as IDataObject);
 }

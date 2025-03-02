@@ -1,37 +1,37 @@
 import type { AlertProperties } from '../../interfaces';
 
 export const alertGetAllDescription: AlertProperties = [
-	{
-		displayName: 'Return All',
-		name: 'returnAll',
-		type: 'boolean',
-		displayOptions: {
-			show: {
-				resource: ['alert'],
-				operation: ['getAll'],
-			},
-		},
-		default: false,
-		noDataExpression: true,
-		description: 'Whether to return all results or only up to a given limit',
-	},
-	{
-		displayName: 'Limit',
-		name: 'limit',
-		type: 'number',
-		typeOptions: {
-			minValue: 1,
-		},
-		displayOptions: {
-			show: {
-				resource: ['alert'],
-				operation: ['getAll'],
-				returnAll: [false],
-			},
-		},
-		default: 50,
-		description: 'Max number of results to return',
-	},
+	// {
+	// 	displayName: 'Return All',
+	// 	name: 'returnAll',
+	// 	type: 'boolean',
+	// 	displayOptions: {
+	// 		show: {
+	// 			resource: ['alert'],
+	// 			operation: ['getAll'],
+	// 		},
+	// 	},
+	// 	default: false,
+	// 	noDataExpression: true,
+	// 	description: 'Whether to return all results or only up to a given limit',
+	// },
+	// {
+	// 	displayName: 'Limit',
+	// 	name: 'limit',
+	// 	type: 'number',
+	// 	typeOptions: {
+	// 		minValue: 1,
+	// 	},
+	// 	displayOptions: {
+	// 		show: {
+	// 			resource: ['alert'],
+	// 			operation: ['getAll'],
+	// 			returnAll: [false],
+	// 		},
+	// 	},
+	// 	default: 50,
+	// 	description: 'Max number of results to return',
+	// },
 	{
 		displayName: 'Filters',
 		name: 'filters',

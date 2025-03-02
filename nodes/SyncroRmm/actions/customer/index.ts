@@ -4,11 +4,11 @@ import * as get from './get';
 import * as getAll from './getAll';
 import * as create from './create';
 import * as update from './update';
-import { customerFields } from './customerFields';
+import { customerDescription } from './description';
 
 export { get, getAll, create, update };
 
-export const descriptions = [
+export const operations: INodeProperties[] = [
 	{
 		displayName: 'Operation',
 		name: 'operation',
@@ -47,9 +47,9 @@ export const descriptions = [
 		],
 		default: 'getAll'
 	},
-	...customerFields,
-	// ...get.description,
+];
+
+export const descriptions = [
+	...customerDescription,
 	...getAll.description,
-	// ...create.description,
-	// ...update.description,
 ] as INodeProperties[];

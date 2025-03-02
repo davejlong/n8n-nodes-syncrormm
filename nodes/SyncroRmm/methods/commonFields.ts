@@ -45,3 +45,35 @@ export const addressFixedCollection: INodeProperties = {
 		},
 	],
 };
+
+export const getAllCommonFields: INodeProperties[] = [
+	{
+		displayName: 'Return All',
+		name: 'returnAll',
+		type: 'boolean',
+		displayOptions: {
+			show: {
+				operation: ['getAll'],
+			},
+		},
+		noDataExpression: true,
+		default: false,
+		description: 'Whether to return all results or only up to a given limit',
+	},
+	{
+		displayName: 'Limit',
+		name: 'limit',
+		type: 'number',
+		typeOptions: {
+			minValue: 1,
+		},
+		description: 'Max number of results to return',
+		displayOptions: {
+			show: {
+				operation: ['getAll'],
+				returnAll: [false],
+			},
+		},
+		default: 50,
+	},
+];
