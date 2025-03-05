@@ -48,17 +48,20 @@ export async function apiRequestAllItems(
 	endpoint: string,
 	body: IDataObject = {},
 	query: IDataObject = {},
+	property?: string,
 ) {
 	let returnData: IDataObject[] = [];
 
 	let responseData;
 	query.page = 1;
 
+	if (!property) { property = endpoint; }
+
 	do {
 		responseData = await apiRequest.call(this, method, endpoint, body, query);
 		query.page++;
-		returnData = returnData.concat(responseData[endpoint] as IDataObject[]);
-	} while (responseData[endpoint].length !== 0);
+		returnData = returnData.concat(responseData[property] as IDataObject[]);
+	} while (responseData[property].length !== 0);
 	return returnData;
 }
 

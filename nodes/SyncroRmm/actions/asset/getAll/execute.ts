@@ -12,6 +12,7 @@ export async function getAll(
 	let qs = {} as IDataObject;
 	const requestMethod = 'GET'
 	const endpoint = 'customer_assets';
+	const property = 'assets';
 	const body = {} as IDataObject;
 
 	if (assetSearchId) {
@@ -28,7 +29,7 @@ export async function getAll(
 
 	let responseData;
 	if (returnAll) {
-		responseData = await apiRequestAllItems.call(this, requestMethod, endpoint, body, qs);
+		responseData = await apiRequestAllItems.call(this, requestMethod, endpoint, body, qs, property);
 		return this.helpers.returnJsonArray(responseData);
 	} else {
 		qs.per_page = this.getNodeParameter('limit', index);

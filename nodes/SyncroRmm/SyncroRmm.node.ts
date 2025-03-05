@@ -93,34 +93,34 @@ export class SyncroRmm implements INodeType {
     ]
   };
 
-methods = {
-	loadOptions: {
-		getTicketStatusOptions,
-		getTicketTypeOptions,
-	},
-	credentialTest: {
-		async syncroRmmApiCredentialTest(
-			this: ICredentialTestFunctions,
-			credential: ICredentialsDecrypted,
-		): Promise<INodeCredentialTestResult> {
-			try {
-				await validateCredentials.call(this, credential.data as ICredentialDataDecryptedObject);
-			} catch (error) {
-				if (error.statusCode === 401) {
-					return {
-						status: 'Error',
-						message: 'The API Key included in the request is invalid',
-					};
-				}
-			};
-
-			return {
-				status: 'OK',
-				message: 'Connection successful!',
-			};
+	methods = {
+		loadOptions: {
+			getTicketStatusOptions,
+			getTicketTypeOptions,
 		},
-	},
-};
+		credentialTest: {
+			async syncroRmmApiCredentialTest(
+				this: ICredentialTestFunctions,
+				credential: ICredentialsDecrypted,
+			): Promise<INodeCredentialTestResult> {
+				try {
+					await validateCredentials.call(this, credential.data as ICredentialDataDecryptedObject);
+				} catch (error) {
+					if (error.statusCode === 401) {
+						return {
+							status: 'Error',
+							message: 'The API Key included in the request is invalid',
+						};
+					}
+				};
+
+				return {
+					status: 'OK',
+					message: 'Connection successful!',
+				};
+			},
+		},
+	};
 
 	async execute(this: IExecuteFunctions) {
 		return await router.call(this);
