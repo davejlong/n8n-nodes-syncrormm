@@ -1,6 +1,6 @@
 import type { CustomerProperties } from "../../interfaces";
 
-export const customerGetAllDescription: CustomerProperties = [
+export const getCustomers: CustomerProperties = [
 	{
 		displayName: 'Filters',
 		name: 'filters',

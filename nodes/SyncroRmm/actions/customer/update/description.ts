@@ -1,6 +1,6 @@
 import { CustomerProperties } from "../../interfaces";
 import { CustomerCommonFields } from "../description";
-export const customerDescription: CustomerProperties = [
+export const updateCustomer: CustomerProperties = [
 	{
 		displayName: 'Customer ID',
 		name: 'customerId',

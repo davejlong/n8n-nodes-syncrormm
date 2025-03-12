@@ -1,7 +1,7 @@
 import { IDataObject, IExecuteFunctions, INodeExecutionData, JsonObject, NodeApiError } from "n8n-workflow";
 import { apiRequest } from "../../../transport";
 
-export async function addCustomer(
+export async function createCustomer(
 	this: IExecuteFunctions,
 	index: number
 ): Promise<INodeExecutionData[]> {

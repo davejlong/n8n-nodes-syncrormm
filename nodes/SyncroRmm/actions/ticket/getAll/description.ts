@@ -1,6 +1,6 @@
 import type { TicketProperties } from '../../interfaces';
 
-export const ticketGetAllDescription: TicketProperties = [
+export const getTickets: TicketProperties = [
 	{
 		displayName: 'Filters',
 		name: 'filters',

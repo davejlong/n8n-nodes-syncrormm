@@ -1,6 +1,6 @@
 import { CustomerProperties } from "../../interfaces";
 
-export const customerDescription: CustomerProperties = [
+export const getCustomer: CustomerProperties = [
 	{
 		displayName: 'Customer ID',
 		name: 'customerId',

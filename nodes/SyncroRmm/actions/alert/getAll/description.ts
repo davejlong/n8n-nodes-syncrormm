@@ -1,6 +1,6 @@
 import type { AlertProperties } from '../../interfaces';
 
-export const alertGetAllDescription: AlertProperties = [
+export const getAlerts: AlertProperties = [
 	{
 		displayName: 'Filters',
 		name: 'filters',

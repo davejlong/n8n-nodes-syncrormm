@@ -1,4 +1,4 @@
-import { alertGetAllDescription as description } from './description';
-import { getAll as execute } from './execute';
+import { getAlerts as description } from './description';
+import { getAlerts as execute } from './execute';
 
 export { description, execute };

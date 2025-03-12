@@ -1,4 +1,4 @@
-import { ticketGetAllDescription as description } from './description';
-import { getAll as execute } from './execute';
+import { getTickets as description } from './description';
+import { getTickets as execute } from './execute';
 
 export { description, execute };

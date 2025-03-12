@@ -1,7 +1,7 @@
 import { CustomerProperties } from "../../interfaces";
 import { CustomerCommonFields } from "../description";
 
-export const customerDescription: CustomerProperties = [
+export const createCustomer: CustomerProperties = [
 	{
 		displayName: 'Email',
 		name: 'email',

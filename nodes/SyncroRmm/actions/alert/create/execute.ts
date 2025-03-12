@@ -2,7 +2,7 @@ import type { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-wor
 
 import { apiRequest } from '../../../transport';
 
-export async function addAlert(
+export async function createAlert(
 	this: IExecuteFunctions,
 	index: number,
 ): Promise<INodeExecutionData[]> {
