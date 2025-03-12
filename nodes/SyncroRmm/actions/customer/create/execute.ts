@@ -9,6 +9,7 @@ export async function addCustomer(
 	const {
 		address,
 		businessName,
+		customFields,
 		firstName,
 		getSms,
 		invoiceCcEmails,
@@ -17,7 +18,7 @@ export async function addCustomer(
 		notes,
 		notificationEmail,
 		phone,
-		referredBy
+		referredBy,
 	} = this.getNodeParameter('additionalFields', index);
 
 	const qs = {} as IDataObject;

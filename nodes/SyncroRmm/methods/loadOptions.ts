@@ -21,8 +21,7 @@ export async function getTicketStatusOptions(this: ILoadOptionsFunctions): Promi
 }
 
 export async function getTicketTypeOptions(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
-	const endpoint = 'settings';
-	const responseData = await apiRequest.call(this, 'GET', endpoint, {});
+	const responseData = await apiRequest.call(this, 'GET', 'settings', {});
 
 	if (responseData == undefined) {
 		throw new NodeOperationError(this.getNode(), 'No data returned');
@@ -33,6 +32,24 @@ export async function getTicketTypeOptions(this: ILoadOptionsFunctions): Promise
 		returnData.push({
 			name: data as string,
 			value: data as string
+		});
+	}
+
+	return returnData;
+}
+
+export async function getCustomerCustomFields(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+	const responseData = await apiRequest.call(this, 'GET', 'settings', {});
+
+	if (responseData == undefined) {
+		throw new NodeOperationError(this.getNode(), 'No data returned');
+	}
+
+	const returnData: INodePropertyOptions[] = [];
+	for(const data of responseData.customers.customer_fields) {
+		returnData.push({
+			name: data.name,
+			value: data.id
 		});
 	}
 
