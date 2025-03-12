@@ -98,6 +98,7 @@ export class SyncroRmm implements INodeType {
 			getCustomerCustomFields,
 			getTicketStatusOptions,
 			getTicketTypeOptions,
+
 		},
 		credentialTest: {
 			async syncroRmmApiCredentialTest(

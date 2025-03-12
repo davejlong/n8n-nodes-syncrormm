@@ -73,40 +73,4 @@ export const CustomerCommonFields: INodeProperties[] = [
 		default: '',
 		description: 'Source from which customer is referred to the platform like Linkedin, Google, Customer name etc',
 	},
-	{
-		displayName: 'Custom Fields',
-		name: 'customFields',
-		placeholder: 'Add Custom Field',
-		type: 'fixedCollection',
-		typeOptions: {
-			multipleValues: true,
-		},
-		description: 'Set custom field values',
-		default: {},
-		options: [
-			{
-				name: 'customFields',
-				displayName: 'Custom Field',
-				values: [
-					{
-						displayName: 'Field Name or ID',
-						name: 'fieldId',
-						type: 'options',
-						typeOptions: {
-							loadOptionsMethod: 'getCustomerCustomFields',
-						},
-						default: '',
-						description: 'Custom field to set a value for. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
-					},
-					{
-						displayName: 'Value',
-						name: 'value',
-						type: 'string',
-						default: '',
-						description: 'Value to set on custom field',
-					}
-				],
-			}
-		]
-	},
 ];

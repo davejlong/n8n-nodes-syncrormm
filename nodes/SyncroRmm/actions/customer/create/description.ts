@@ -16,10 +16,10 @@ export const createCustomer: CustomerProperties = [
 		default: '',
 	},
 	{
-		displayName: 'Customer Fields',
+		displayName: 'Additional Fields',
 		name: 'additionalFields',
 		type: 'collection',
-		placeholder: 'Customer Fields',
+		placeholder: 'Add Field',
 		displayOptions: {
 			show: {
 				resource: ['customer'],
@@ -30,5 +30,47 @@ export const createCustomer: CustomerProperties = [
 		options: [
 			...CustomerCommonFields,
 		],
+	},
+	{
+		displayName: 'Custom Fields',
+		name: 'customFields',
+		placeholder: 'Add Custom Field',
+		type: 'fixedCollection',
+		typeOptions: {
+			multipleValues: true,
+		},
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['create'],
+			},
+		},
+		description: 'Set custom field values',
+		default: {},
+		options: [
+			{
+				name: 'customFields',
+				displayName: 'Custom Field',
+				values: [
+					{
+						displayName: 'Field Name or ID',
+						name: 'fieldId',
+						type: 'options',
+						typeOptions: {
+							loadOptionsMethod: 'getCustomerCustomFields',
+						},
+						default: '',
+						description: 'Custom field to set a value for. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
+					},
+					{
+						displayName: 'Value',
+						name: 'value',
+						type: 'string',
+						default: '',
+						description: 'Value to set on custom field',
+					}
+				],
+			}
+		]
 	},
 ];

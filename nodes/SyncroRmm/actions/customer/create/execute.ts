@@ -9,7 +9,7 @@ export async function createCustomer(
 	const {
 		address,
 		businessName,
-		// customFields,
+		customFields,
 		firstName,
 		getSms,
 		invoiceCcEmails,
@@ -45,6 +45,7 @@ export async function createCustomer(
 		notification_email: notificationEmail,
 		phone,
 		referred_by: referredBy,
+		properties: customFields,
 	};
 
 	const responseData = await apiRequest.call(this, requestMethod, endpoint, body, qs);

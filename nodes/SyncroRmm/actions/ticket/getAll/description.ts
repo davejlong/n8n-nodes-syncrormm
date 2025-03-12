@@ -33,7 +33,7 @@ export const getTickets: TicketProperties = [
 				name: 'query',
 				type: 'string',
 				default: '',
-				placeholder: 'John Doe',
+				placeholder: 'Login Issue',
 				description: 'Search query, it can be anything related to ticket data like user etc',
 			},
 			{
