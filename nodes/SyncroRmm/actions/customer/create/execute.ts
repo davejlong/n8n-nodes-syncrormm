@@ -9,7 +9,7 @@ export async function createCustomer(
 	const {
 		address,
 		businessName,
-		customFields,
+		// customFields,
 		firstName,
 		getSms,
 		invoiceCcEmails,
