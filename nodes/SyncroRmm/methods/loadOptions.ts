@@ -55,3 +55,21 @@ export async function getCustomerCustomFields(this: ILoadOptionsFunctions): Prom
 
 	return returnData;
 }
+
+export async function getAssetTypeOptions(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+	const responseData = await apiRequest.call(this, 'GET', 'settings', {});
+
+	if (responseData == undefined) {
+		throw new NodeOperationError(this.getNode(), 'No data returned');
+	}
+
+	const returnData: INodePropertyOptions[] = [];
+	for(const data of responseData.assets.asset_types) {
+		returnData.push({
+			name: data.name as string,
+			value: data.id as number,
+		});
+	}
+
+	return returnData;
+}
