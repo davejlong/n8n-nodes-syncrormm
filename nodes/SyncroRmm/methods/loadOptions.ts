@@ -31,7 +31,7 @@ export async function getTicketTypeOptions(this: ILoadOptionsFunctions): Promise
 	for (const data of responseData.ticket.problem_types) {
 		returnData.push({
 			name: data as string,
-			value: data as string
+			value: data as string,
 		});
 	}
 
@@ -48,8 +48,8 @@ export async function getCustomerCustomFields(this: ILoadOptionsFunctions): Prom
 	const returnData: INodePropertyOptions[] = [];
 	for(const data of responseData.customers.customer_fields) {
 		returnData.push({
-			name: data.name,
-			value: data.id
+			name: data.name as string,
+			value: data.name as string,
 		});
 	}
 

@@ -9,7 +9,6 @@ export async function createCustomer(
 	const {
 		address,
 		businessName,
-		customFields,
 		firstName,
 		getSms,
 		invoiceCcEmails,
@@ -20,6 +19,9 @@ export async function createCustomer(
 		phone,
 		referredBy,
 	} = this.getNodeParameter('additionalFields', index);
+	const { customField } = this.getNodeParameter('customFields', index) as { customField: {fieldId: string, value: string}[] };
+
+	this.logger.debug("[SYNCRO] Custom fields", customField);
 
 	const qs = {} as IDataObject;
 	const requestMethod = 'POST';
@@ -30,6 +32,13 @@ export async function createCustomer(
 	if (addressData) {
 		addressData = addressData.addressFields as IDataObject;
 		addressData.address_2 = addressData.address2;
+	}
+
+	let properties = {} as IDataObject;
+	if (customField) {
+		customField.forEach(field => {
+			properties[field.fieldId] = field.value;
+		});
 	}
 
 	body = {
@@ -44,8 +53,8 @@ export async function createCustomer(
 		notes,
 		notification_email: notificationEmail,
 		phone,
+		properties,
 		referred_by: referredBy,
-		properties: customFields,
 	};
 
 	const responseData = await apiRequest.call(this, requestMethod, endpoint, body, qs);
