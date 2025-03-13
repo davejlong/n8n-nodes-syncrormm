@@ -1,6 +1,6 @@
 import type { AssetProperties } from "../../interfaces";
 
-export const assetGetAllDescription: AssetProperties = [
+export const getAssets: AssetProperties = [
 	{
 		displayName: 'Asset Search ID',
 		name: 'assetSearchId',

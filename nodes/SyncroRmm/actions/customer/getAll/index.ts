@@ -1,4 +1,4 @@
-import { customerGetAllDescription as description } from "./description";
-import { getAll as execute } from './execute';
+import { getCustomers as description } from "./description";
+import { getCustomers as execute } from './execute';
 
 export { description, execute };

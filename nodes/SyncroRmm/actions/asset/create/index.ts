@@ -1,3 +1,4 @@
-import { addAsset as execute } from "./execute";
+import { createAsset as execute } from "./execute";
+import { createAsset as description } from "./description";
 
-export { execute };
+export { execute, description };

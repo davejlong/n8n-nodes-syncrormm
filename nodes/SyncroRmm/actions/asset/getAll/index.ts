@@ -1,4 +1,4 @@
-import { assetGetAllDescription as description } from "./description";
-import { getAll as execute } from "./execute";
+import { getAssets as description } from "./description";
+import { getAssets as execute } from "./execute";
 
 export { description, execute };

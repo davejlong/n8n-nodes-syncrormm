@@ -1,7 +1,7 @@
 import { IDataObject, IExecuteFunctions, INodeExecutionData } from "n8n-workflow";
 import { apiRequest } from "../../../transport";
 
-export async function addAsset(
+export async function createAsset(
 	this: IExecuteFunctions,
 	index: number,
 ): Promise<INodeExecutionData[]> {

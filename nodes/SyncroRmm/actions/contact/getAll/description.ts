@@ -1,7 +1,7 @@
 // import { getAllCommonFields } from '../../../methods/commonFields';
 import type { ContactProperties } from '../../interfaces';
 
-export const contactGetAllDescription: ContactProperties = [
+export const getContacts: ContactProperties = [
 	{
 		displayName: 'Filters',
 		name: 'filters',

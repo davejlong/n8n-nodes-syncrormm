@@ -1,6 +1,6 @@
 import type { CustomerProperties } from "../../interfaces";
 
-export const customerGetAllDescription: CustomerProperties = [
+export const getCustomers: CustomerProperties = [
 	{
 		displayName: 'Filters',
 		name: 'filters',
@@ -50,7 +50,7 @@ export const customerGetAllDescription: CustomerProperties = [
 				name: 'query',
 				type: 'string',
 				default: '',
-				placeholder: 'John Doe',
+				placeholder: 'Contoso Corp',
 				description: 'Search query, it can be anything related to customer data like name etc',
 			},
 			{

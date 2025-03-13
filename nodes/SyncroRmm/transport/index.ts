@@ -25,15 +25,19 @@ export async function apiRequest(
 ) {
 	const credentials = await this.getCredentials('syncroRmmApi');
 
-	query.api_key = credentials.apiKey;
-
 	const options: IHttpRequestOptions = {
 		method,
 		body,
 		qs: query,
 		url: `https://${credentials.subdomain}.syncromsp.com/api/v1/${endpoint}`,
-		headers: {},
+		headers: {
+			'Authorization': credentials.apiKey,
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
 	};
+
+	this.logger.debug(`[Syncro] Making request for ${options.url}`, options);
 
 	try {
 		return await this.helpers.httpRequest(options);
@@ -98,6 +102,7 @@ export async function syncroGetRequest(
 
 	const responseData = await apiRequest.call(this, requestMethod, endpoint, body, qs);
 
+	this.logger.debug(`[Syncro] Retrieved record`, responseData);
 	let response = responseData;
 	if (responseKey) { response = responseData[responseKey]; }
 	return this.helpers.returnJsonArray(response as IDataObject);

@@ -1,3 +1,4 @@
-import { addCustomer as execute } from "./execute";
+import { createCustomer as execute } from "./execute";
+import { createCustomer as description } from "./description";
 
-export { execute };
+export { execute, description };

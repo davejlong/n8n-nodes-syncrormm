@@ -4,7 +4,6 @@ import * as create from './create';
 import * as get from './get';
 import * as getAll from './getAll';
 import * as update from './update';
-import { ticketDescription } from './description';
 
 export { create, get, getAll, update };
 
@@ -50,6 +49,8 @@ export const operations: INodeProperties[] = [
 ];
 
 export const descriptions = [
-	...ticketDescription,
+	...create.description,
+	...get.description,
 	...getAll.description,
+	...update.description,
 ] as INodeProperties[];

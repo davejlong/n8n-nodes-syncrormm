@@ -2,7 +2,7 @@ import type { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-wor
 
 import { apiRequest, apiRequestAllItems } from '../../../transport';
 
-export async function getAll(
+export async function getContacts(
 	this: IExecuteFunctions,
 	index: number,
 ): Promise<INodeExecutionData[]> {

@@ -1,7 +1,7 @@
 import { IDataObject, IExecuteFunctions, INodeExecutionData, JsonObject, NodeApiError } from "n8n-workflow";
 import { apiRequest } from "../../../transport";
 
-export async function addCustomer(
+export async function createCustomer(
 	this: IExecuteFunctions,
 	index: number
 ): Promise<INodeExecutionData[]> {
@@ -17,8 +17,11 @@ export async function addCustomer(
 		notes,
 		notificationEmail,
 		phone,
-		referredBy
+		referredBy,
 	} = this.getNodeParameter('additionalFields', index);
+	const { customField } = this.getNodeParameter('customFields', index) as { customField: {fieldId: string, value: string}[] };
+
+	this.logger.debug("[SYNCRO] Custom fields", customField);
 
 	const qs = {} as IDataObject;
 	const requestMethod = 'POST';
@@ -29,6 +32,13 @@ export async function addCustomer(
 	if (addressData) {
 		addressData = addressData.addressFields as IDataObject;
 		addressData.address_2 = addressData.address2;
+	}
+
+	let properties = {} as IDataObject;
+	if (customField) {
+		customField.forEach(field => {
+			properties[field.fieldId] = field.value;
+		});
 	}
 
 	body = {
@@ -43,6 +53,7 @@ export async function addCustomer(
 		notes,
 		notification_email: notificationEmail,
 		phone,
+		properties,
 		referred_by: referredBy,
 	};
 
