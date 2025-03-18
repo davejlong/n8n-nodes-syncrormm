@@ -20,12 +20,21 @@ export async function updateCustomer(
 		phone,
 		referredBy
 	} = this.getNodeParameter('additionalFields', index);
+	const { customField } = this.getNodeParameter('customFields', index) as { customField: {fieldId: string, value: string}[] };
 
 	const qs = {} as IDataObject;
 	const requestMethod = 'PUT';
 	const endpoint = `customers/${id}`
 	let body = {} as IDataObject;
 	let addressData = address as IDataObject;
+
+	let properties = {} as IDataObject;
+	if (customField) {
+		customField.forEach(field => {
+			properties[field.fieldId] = field.value;
+		});
+	}
+
 
 	if (addressData) {
 		addressData = addressData.addressFields as IDataObject;
@@ -44,6 +53,7 @@ export async function updateCustomer(
 		notes,
 		notification_email: notificationEmail,
 		phone,
+		properties,
 		referred_by: referredBy,
 	};
 

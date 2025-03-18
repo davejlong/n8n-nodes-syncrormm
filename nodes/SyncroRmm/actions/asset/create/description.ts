@@ -14,16 +14,20 @@ export const createAsset: AssetProperties = [
 		default: undefined,
 	},
 	{
-		displayName: 'Asset Type ID',
+		displayName: 'Asset Type Name or ID',
 		name: 'assetTypeId',
-		type: 'number',
+		type: 'options',
 		displayOptions: {
 			show: {
 				resource: ['asset'],
 				operation: ['create'],
 			},
 		},
-		default: undefined,
+		typeOptions: {
+			loadOptionsMethod: 'getAssetTypeOptions',
+		},
+		default: '',
+		description: 'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
 	},
 	{
 		displayName: 'Asset Name',
