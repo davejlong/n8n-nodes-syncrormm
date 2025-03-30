@@ -19,9 +19,7 @@ export async function createCustomer(
 		phone,
 		referredBy,
 	} = this.getNodeParameter('additionalFields', index);
-	const { customField } = this.getNodeParameter('customFields', index) as { customField: {fieldId: string, value: string}[] };
-
-	this.logger.debug("[SYNCRO] Custom fields", customField);
+	const { customFields } = this.getNodeParameter('customFields', index) as { customField: {fieldId: string, value: string}[] };
 
 	const qs = {} as IDataObject;
 	const requestMethod = 'POST';
@@ -35,8 +33,8 @@ export async function createCustomer(
 	}
 
 	let properties = {} as IDataObject;
-	if (customField) {
-		customField.forEach(field => {
+	if (customFields) {
+		customFields.forEach(field => {
 			properties[field.fieldId] = field.value;
 		});
 	}
