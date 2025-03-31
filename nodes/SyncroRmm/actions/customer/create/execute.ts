@@ -21,8 +21,6 @@ export async function createCustomer(
 	} = this.getNodeParameter('additionalFields', index);
 	const { customField } = this.getNodeParameter('customFields', index) as { customField: {fieldId: string, value: string}[] };
 
-	this.logger.debug("[SYNCRO] Custom fields", customField);
-
 	const qs = {} as IDataObject;
 	const requestMethod = 'POST';
 	const endpoint = 'customers';
