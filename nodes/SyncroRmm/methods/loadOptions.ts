@@ -84,21 +84,23 @@ interface AssetField {
 }
 export async function getAssetFieldOptions(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
 	const responseData = await apiRequest.call(this, 'GET', 'settings', {});
-	const assetTypeId = this.getCurrentNodeParameter('assetTypeId');
+	const assetTypeId = this.getNodeParameter('assetTypeId', null);
 
 	if (responseData == undefined) {
 		throw new NodeOperationError(this.getNode(), 'No data returned');
 	}
 
-	let returnData = responseData.assets.asset_type_fields.reduce((fields:INodePropertyOptions[], field:AssetField) => {
-		if (field.asset_type_id == assetTypeId) {
+	let properties: string[] = [];
+	const returnData = responseData.assets.asset_type_fields.reduce((fields:INodePropertyOptions[], field:AssetField) => {
+		if ((field.asset_type_id == assetTypeId || assetTypeId == null) && properties.indexOf(field.name) < 0) {
+			properties.push(field.name)
 			fields.push({
 				name: field.name,
-				value: field.id,
+				value: field.name,
 			});
 		}
 		return fields;
-	});
+	}, []);
 
 	return returnData;
 }

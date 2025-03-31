@@ -76,11 +76,11 @@ export const createAsset: AssetProperties = [
 				values: [
 					{
 						displayName: 'Field Name or ID',
-						name: 'name',
+						name: 'fieldId',
 						type: 'options',
 						typeOptions: {
 							loadOptionsDependsOn: ['assetTypeId'],
-							loadOptionsMethod: 'getAssetCustomFields',
+							loadOptionsMethod: 'getAssetFieldOptions',
 						},
 						default: '',
 						description: 'Custom field to set a value for. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
