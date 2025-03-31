@@ -53,4 +53,47 @@ export const createAsset: AssetProperties = [
 		},
 		default: undefined,
 	},
+	{
+		displayName: 'Custom Fields',
+		name: 'customFields',
+		placeholder: 'Add Custom Field',
+		type: 'fixedCollection',
+		typeOptions: {
+			multipleValues: true,
+		},
+		displayOptions: {
+			show: {
+				resource: ['asset'],
+				operation: ['create'],
+			},
+		},
+		description: 'Set custom field values',
+		default: [],
+		options: [
+			{
+				displayName: 'Custom Field',
+				name: 'customField',
+				values: [
+					{
+						displayName: 'Field Name or ID',
+						name: 'name',
+						type: 'options',
+						typeOptions: {
+							loadOptionsDependsOn: ['assetTypeId'],
+							loadOptionsMethod: 'getAssetCustomFields',
+						},
+						default: '',
+						description: 'Custom field to set a value for. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>.',
+					},
+					{
+						displayName: 'Value',
+						name: 'value',
+						type: 'string',
+						default: '',
+						description: 'Value to set on custom field',
+					},
+				],
+			},
+		],
+	},
 ];

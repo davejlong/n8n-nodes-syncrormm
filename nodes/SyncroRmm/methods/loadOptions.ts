@@ -73,3 +73,32 @@ export async function getAssetTypeOptions(this: ILoadOptionsFunctions): Promise<
 
 	return returnData;
 }
+
+interface AssetField {
+	name: string;
+	id: number;
+	field_type: string;
+	asset_type_id: number;
+	position?: number;
+	required: boolean;
+}
+export async function getAssetFieldOptions(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+	const responseData = await apiRequest.call(this, 'GET', 'settings', {});
+	const assetTypeId = this.getCurrentNodeParameter('assetTypeId');
+
+	if (responseData == undefined) {
+		throw new NodeOperationError(this.getNode(), 'No data returned');
+	}
+
+	let returnData = responseData.assets.asset_type_fields.reduce((fields:INodePropertyOptions[], field:AssetField) => {
+		if (field.asset_type_id == assetTypeId) {
+			fields.push({
+				name: field.name,
+				value: field.id,
+			});
+		}
+		return fields;
+	});
+
+	return returnData;
+}

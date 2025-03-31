@@ -11,7 +11,7 @@ import {
 import { router } from './actions/router';
 import { validateCredentials } from './transport';
 
-import { getTicketStatusOptions, getTicketTypeOptions, getCustomerCustomFields, getAssetTypeOptions } from './methods/loadOptions';
+import { getTicketStatusOptions, getTicketTypeOptions, getCustomerCustomFields, getAssetTypeOptions, getAssetFieldOptions } from './methods/loadOptions';
 
 import * as alert from './actions/alert';
 import * as asset from './actions/asset';
@@ -99,7 +99,7 @@ export class SyncroRmm implements INodeType {
 			getCustomerCustomFields,
 			getTicketStatusOptions,
 			getTicketTypeOptions,
-
+			getAssetFieldOptions,
 		},
 		credentialTest: {
 			async syncroRmmApiCredentialTest(
