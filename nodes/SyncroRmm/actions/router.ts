@@ -9,6 +9,7 @@ import * as contact from './contact';
 import * as customer from './customer';
 import * as ticket from './ticket';
 import * as timerEntry from './timer_entry';
+import * as user from './user';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const items = this.getInputData();
@@ -40,6 +41,10 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 					break;
 				case "timer_entry":
 					responseData = await timerEntry[syncroRmm.operation].execute.call(this, i);
+					break;
+				case "user":
+					responseData = await user[syncroRmm.operation].execute.call(this, i);
+					break;
 			}
 
 			const executionData = this.helpers.constructExecutionMetaData(responseData, {
