@@ -18,6 +18,7 @@ import * as asset from './actions/asset';
 import * as contact from './actions/contact';
 import * as customer from './actions/customer';
 import * as ticket from './actions/ticket';
+import * as timerEntry from './actions/timer_entry';
 
 import { getAllCommonFields } from './methods/commonFields';
 
@@ -76,6 +77,10 @@ export class SyncroRmm implements INodeType {
 						name: 'Ticket',
 						value: 'ticket',
 					},
+					{
+						name: 'Timer Entry',
+						value: 'timer_entry',
+					},
 				],
 				default: 'customer',
 			},
@@ -84,12 +89,14 @@ export class SyncroRmm implements INodeType {
 			...contact.operations,
 			...customer.operations,
 			...ticket.operations,
+			...timerEntry.operations,
 			...getAllCommonFields,
 			...alert.descriptions,
 			...asset.descriptions,
 			...contact.descriptions,
 			...customer.descriptions,
 			...ticket.descriptions,
+			...timerEntry.descriptions,
     ]
   };
 

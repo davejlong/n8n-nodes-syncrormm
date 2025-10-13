@@ -8,6 +8,7 @@ import * as asset from './asset';
 import * as contact from './contact';
 import * as customer from './customer';
 import * as ticket from './ticket';
+import * as timerEntry from './timer_entry';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const items = this.getInputData();
@@ -37,6 +38,8 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 				case "ticket":
 					responseData = await ticket[syncroRmm.operation].execute.call(this, i);
 					break;
+				case "timer_entry":
+					responseData = await timerEntry[syncroRmm.operation].execute.call(this, i);
 			}
 
 			const executionData = this.helpers.constructExecutionMetaData(responseData, {

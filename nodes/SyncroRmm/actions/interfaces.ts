@@ -10,6 +10,7 @@ type SyncroRmmMap = {
 	customer: 'create' | 'get' | 'getAll' | 'update';
 	contact: 'create' | 'get' | 'getAll' | 'update';
 	ticket: 'create' | 'get' | 'getAll' | 'update';
+	timer_entry: 'create';
 };
 
 export type SyncroRmm = AllEntities<SyncroRmmMap>;
@@ -19,12 +20,14 @@ export type SyncroRmmMapAsset = Entity<SyncroRmmMap, 'asset'>;
 export type SyncroRmmMapCustomer = Entity<SyncroRmmMap, 'customer'>;
 export type SyncroRmmMapContact = Entity<SyncroRmmMap, 'contact'>;
 export type SyncroRmmMapTicket = Entity<SyncroRmmMap, 'ticket'>;
+export type SyncroRmmMapTimerEntry = Entity<SyncroRmmMap, 'timer_entry'>;
 
 export type AlertProperties = PropertiesOf<SyncroRmmMapAlert>;
 export type AssetProperties = PropertiesOf<SyncroRmmMapAsset>;
 export type CustomerProperties = PropertiesOf<SyncroRmmMapCustomer>;
 export type ContactProperties = PropertiesOf<SyncroRmmMapContact>;
 export type TicketProperties = PropertiesOf<SyncroRmmMapTicket>;
+export type TimerEntryProperties = PropertiesOf<SyncroRmmMapTimerEntry>;
 
 export interface IAttachment {
 	fields: {
