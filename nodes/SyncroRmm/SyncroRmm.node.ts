@@ -1,27 +1,10 @@
 import {
-	ICredentialDataDecryptedObject,
-	ICredentialsDecrypted,
-	ICredentialTestFunctions,
-  IExecuteFunctions,
-	INodeCredentialTestResult,
 	INodeType,
   INodeTypeDescription,
 } from 'n8n-workflow';
 
-import { router } from './actions/router';
-import { validateCredentials } from './transport';
-
-import { getTicketStatusOptions, getTicketTypeOptions, getCustomerCustomFields, getAssetTypeOptions, getAssetFieldOptions } from './methods/loadOptions';
-
-import * as alert from './actions/alert';
-import * as asset from './actions/asset';
-import * as contact from './actions/contact';
-import * as customer from './actions/customer';
-import * as ticket from './actions/ticket';
-import * as timerEntry from './actions/timer_entry';
-import * as user from './actions/user';
-
-import { getAllCommonFields } from './methods/commonFields';
+import * as Customers from './actions/customers';
+import * as Users from './actions/users';
 
 export class SyncroRmm implements INodeType {
   description: INodeTypeDescription = {
@@ -45,6 +28,7 @@ export class SyncroRmm implements INodeType {
     ],
     requestDefaults: {
       baseURL: "=https://{{$credentials.subdomain}}.syncromsp.com/api/v1",
+			url: '',
       headers: {
         'Authorization': '={{$credentials.apiKey}}',
         'Content-Type': 'application/json',
@@ -58,88 +42,39 @@ export class SyncroRmm implements INodeType {
 				type: 'options',
 				noDataExpression: true,
 				options: [
-					{
-						name: 'Alert',
-						value: 'alert',
-					},
-					{
-						name: 'Asset',
-						value: 'asset',
-					},
-					{
-						name: 'Contact',
-						value: 'contact',
-					},
+					// {
+					// 	name: 'Alert',
+					// 	value: 'alerts',
+					// },
+					// {
+					// 	name: 'Asset',
+					// 	value: 'assets',
+					// },
+					// {
+					// 	name: 'Contact',
+					// 	value: 'contacts',
+					// },
 					{
 						name: 'Customer',
-						value: 'customer',
+						value: 'customers',
 					},
-					{
-						name: 'Ticket',
-						value: 'ticket',
-					},
-					{
-						name: 'Timer Entry',
-						value: 'timer_entry',
-					},
+					// {
+					// 	name: 'Ticket',
+					// 	value: 'tickets',
+					// },
+					// {
+					// 	name: 'Timer Entry',
+					// 	value: 'timer_entrys',
+					// },
 					{
 						name: 'User',
-						value: 'user',
+						value: 'users',
 					},
 				],
-				default: 'customer',
+				default: 'customers',
 			},
-			...alert.operations,
-			...asset.operations,
-			...contact.operations,
-			...customer.operations,
-			...ticket.operations,
-			...timerEntry.operations,
-			...user.operations,
-			...getAllCommonFields,
-			...alert.descriptions,
-			...asset.descriptions,
-			...contact.descriptions,
-			...customer.descriptions,
-			...ticket.descriptions,
-			...timerEntry.descriptions,
-			...user.descriptions,
+			...Customers.description,
+			...Users.description,
     ]
   };
-
-	methods = {
-		loadOptions: {
-			getAssetTypeOptions,
-			getCustomerCustomFields,
-			getTicketStatusOptions,
-			getTicketTypeOptions,
-			getAssetFieldOptions,
-		},
-		credentialTest: {
-			async syncroRmmApiCredentialTest(
-				this: ICredentialTestFunctions,
-				credential: ICredentialsDecrypted,
-			): Promise<INodeCredentialTestResult> {
-				try {
-					await validateCredentials.call(this, credential.data as ICredentialDataDecryptedObject);
-				} catch (error) {
-					if (error.statusCode === 401) {
-						return {
-							status: 'Error',
-							message: 'The API Key included in the request is invalid',
-						};
-					}
-				};
-
-				return {
-					status: 'OK',
-					message: 'Connection successful!',
-				};
-			},
-		},
-	};
-
-	async execute(this: IExecuteFunctions) {
-		return await router.call(this);
-	}
 }
