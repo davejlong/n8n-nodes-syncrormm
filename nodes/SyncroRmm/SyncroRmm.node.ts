@@ -33,6 +33,9 @@ export class SyncroRmm implements INodeType {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
+			qs: {
+				page: 1,
+			},
     },
 		requestOperations: {
 			pagination: {
