@@ -1,8 +1,7 @@
-import {
-	INodeType,
-  INodeTypeDescription,
+import { INodeType, INodeTypeDescription,
 } from 'n8n-workflow';
 
+import * as Assets from './actions/assets';
 import * as Customers from './actions/customers';
 import * as Users from './actions/users';
 
@@ -33,8 +32,21 @@ export class SyncroRmm implements INodeType {
         'Authorization': '={{$credentials.apiKey}}',
         'Content-Type': 'application/json',
         'Accept': 'application/json'
-      }
+      },
     },
+		requestOperations: {
+			pagination: {
+				type: 'generic',
+				properties: {
+					continue: "={{ $response.body?.meta.page < $response.body?.meta.total_pages }}",
+					request: {
+						qs: {
+							page: "={{ $if($response.body?.meta.page, $response.body.meta.page + 1, 1) }}",
+						},
+					},
+				},
+			},
+		},
     properties: [
 			{
 				displayName: 'Resource',
@@ -46,10 +58,10 @@ export class SyncroRmm implements INodeType {
 					// 	name: 'Alert',
 					// 	value: 'alerts',
 					// },
-					// {
-					// 	name: 'Asset',
-					// 	value: 'assets',
-					// },
+					{
+						name: 'Asset',
+						value: 'assets',
+					},
 					// {
 					// 	name: 'Contact',
 					// 	value: 'contacts',
@@ -73,6 +85,7 @@ export class SyncroRmm implements INodeType {
 				],
 				default: 'customers',
 			},
+			...Assets.description,
 			...Customers.description,
 			...Users.description,
     ]

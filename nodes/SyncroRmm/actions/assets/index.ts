@@ -1,5 +1,8 @@
 import { INodeProperties } from "n8n-workflow"
+
+import { createDescription } from "./create";
 import { getAllDescription } from "./getAll";
+import { updateDescription } from "./update";
 
 export const description: INodeProperties[] = [
 	{
@@ -10,11 +13,32 @@ export const description: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['assets'],
-				operation: ['getAll'],
 			},
 		},
 		default: 'getAll',
 		options: [
+			{
+				name: 'Create',
+				value: 'create',
+				description: 'Create an asset',
+				action: 'Create an asset',
+				routing: {
+					request: {
+						method: 'POST',
+						url: '/customer_assets',
+					},
+					output: {
+						postReceive: [
+							{
+								type: 'rootProperty',
+								properties: {
+									property: 'asset',
+								},
+							},
+						],
+					},
+				},
+			},
 			{
 				name: 'Get Many',
 				value: 'getAll',
@@ -61,7 +85,19 @@ export const description: INodeProperties[] = [
 						],
 					},
 				},
-			}
+			},
+			{
+				name: 'Update',
+				value: 'update',
+				description: 'Update an asset',
+				action: 'Update an asset',
+				routing: {
+					request: {
+						method: 'PUT',
+						url: "=/customer_assets/{{$parameter.id}}",
+					},
+				},
+			},
 		],
 	},
 
@@ -79,5 +115,7 @@ export const description: INodeProperties[] = [
 		},
 	},
 
+	...createDescription,
 	...getAllDescription,
+	...updateDescription,
 ];
