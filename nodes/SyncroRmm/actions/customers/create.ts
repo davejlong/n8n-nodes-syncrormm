@@ -1,5 +1,7 @@
 import { INodeProperties } from "n8n-workflow";
 import { AddressProperties } from "../../utilities/CommonProperties";
+import { LoadOptions } from "../../utilities/LoadOptions";
+import { BuildCustomFieldsObject } from "../../utilities/GenericFunctions";
 
 export const createDescription: INodeProperties[] = [
 	{
@@ -173,5 +175,54 @@ export const createDescription: INodeProperties[] = [
 				},
 			},
 		],
-	}
+	},
+	{
+		displayName: 'Custom Fields',
+		name: 'customFields',
+		type: 'fixedCollection',
+		placeholder: 'Add Custom Field',
+		default: {},
+		displayOptions: {
+			show: {
+				resource: ['customers'],
+				operation: ['create'],
+			},
+		},
+		description: 'Set custom field values',
+		typeOptions: {
+			multipleValues: true,
+		},
+		options: [
+			{
+				name: 'customField',
+				displayName: 'Custom Field',
+				values: [
+					{
+						displayName: 'Field Name or ID',
+						name: 'fieldId',
+						type: 'options',
+						default: '',
+						typeOptions: {
+							loadOptions: {
+								...LoadOptions.GetCustomerCustomFields,
+							},
+						},
+						description: 'Name or ID of the custom field to set',
+					},
+					{
+						displayName: 'Value',
+						name: 'value',
+						type: 'string',
+						default: '',
+						description: 'Value of the custom field',
+					}
+				],
+			},
+		],
+		routing: {
+			send: {
+				preSend: [BuildCustomFieldsObject],
+			}
+		}
+	},
 ];

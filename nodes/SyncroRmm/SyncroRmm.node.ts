@@ -1,5 +1,4 @@
-import { INodeType, INodeTypeDescription,
-} from 'n8n-workflow';
+import { INodeType, INodeTypeDescription } from 'n8n-workflow';
 
 import * as Assets from './actions/assets';
 import * as Customers from './actions/customers';
