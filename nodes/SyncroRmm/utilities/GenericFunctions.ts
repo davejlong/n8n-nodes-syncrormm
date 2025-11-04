@@ -1,4 +1,40 @@
-import { IExecuteSingleFunctions, INodeExecutionData, IN8nHttpFullResponse, IHttpRequestOptions, IDataObject } from "n8n-workflow";
+import { IExecuteSingleFunctions, INodeExecutionData, IN8nHttpFullResponse, IHttpRequestOptions, IDataObject, IExecutePaginationFunctions, DeclarativeRestApiSettings, IPostReceiveRootProperty, IPostReceiveBase } from "n8n-workflow";
+
+export async function SyncroPagination(
+	this: IExecutePaginationFunctions,
+	requestData: DeclarativeRestApiSettings.ResultOptions
+): Promise<INodeExecutionData[]> {
+	this.logger.debug('[SYNCRO] Starting pagination function');
+	const returnData: INodeExecutionData[] = [];
+
+	// Create a new RequestData object without the root property
+	const requestOptions = requestData.options as IHttpRequestOptions;
+	if (requestOptions.qs === undefined) {
+		requestOptions.qs = { page: 1};
+	}
+
+	// Determine the root property from the postReceive actions
+	const postReceiveActions = requestData.postReceive[0].actions as IPostReceiveBase[];
+	const rootPropertyAction = postReceiveActions.find((action) => action.type === 'rootProperty') as IPostReceiveRootProperty;
+	let rootProperty: string = 'data';
+	if (rootPropertyAction) {
+		rootProperty = rootPropertyAction.properties.property;
+	}
+
+	this.logger.debug(`[SYNCRO] Using root property: ${rootProperty}`);
+	let responseData;
+	do {
+		this.logger.debug('[SYNCRO] Making paginated request with options:');
+		this.logger.debug(JSON.stringify(requestOptions, null, 2));
+		responseData = await this.helpers.httpRequestWithAuthentication.call(this, 'syncroRmmApi', requestOptions);
+		responseData[rootProperty].forEach((item: IDataObject) => {
+			returnData.push({ json: item });
+		});
+		requestOptions.qs.page = (requestOptions.qs.page as number || 1) + 1;
+	} while(responseData.meta && responseData.meta.page < responseData.meta.total_pages);
+
+	return returnData;
+}
 
 export async function UsersPostReceiveAction(
 	this: IExecuteSingleFunctions, items: INodeExecutionData[], response: IN8nHttpFullResponse

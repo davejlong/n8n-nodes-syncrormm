@@ -1,4 +1,5 @@
 import { INodeType, INodeTypeDescription } from 'n8n-workflow';
+import { SyncroPagination } from './utilities/GenericFunctions';
 
 import * as Assets from './actions/assets';
 import * as Customers from './actions/customers';
@@ -32,22 +33,9 @@ export class SyncroRmm implements INodeType {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-			qs: {
-				page: 1,
-			},
     },
 		requestOperations: {
-			pagination: {
-				type: 'generic',
-				properties: {
-					continue: "={{ $response.body?.meta.page < $response.body?.meta.total_pages }}",
-					request: {
-						qs: {
-							page: "={{ $if($response.body?.meta.page, $response.body.meta.page + 1, 1) }}",
-						},
-					},
-				},
-			},
+			pagination: SyncroPagination,
 		},
     properties: [
 			{

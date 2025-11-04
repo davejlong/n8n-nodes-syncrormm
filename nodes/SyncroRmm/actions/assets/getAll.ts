@@ -1,4 +1,5 @@
 import { INodeProperties } from "n8n-workflow"
+import { LoadOptions } from "../../utilities/LoadOptions";
 export const getAllDescription: INodeProperties[] = [
 	{
 		displayName: 'Filters',
@@ -16,7 +17,10 @@ export const getAllDescription: INodeProperties[] = [
 			{
 				displayName: 'Customer ID',
 				name: 'customerId',
-				type: 'string',
+				type: 'options',
+				typeOptions: {
+					loadOptions: LoadOptions.GetCustomers,
+				},
 				default: '',
 				description: 'Filter by customer ID',
 				routing: {
@@ -29,7 +33,10 @@ export const getAllDescription: INodeProperties[] = [
 			{
 				displayName: 'Asset Type ID',
 				name: 'assetTypeId',
-				type: 'string',
+				type: 'options',
+				typeOptions: {
+					loadOptions: LoadOptions.GetAssetTypes,
+				},
 				default: '',
 				description: 'Filter by asset type ID',
 				routing: {
