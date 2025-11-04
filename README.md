@@ -197,11 +197,11 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ### RMM Alert
 
-* [ ] GET /rmm_alerts - Returns a paginated list of RMM Alerts
-* [ ] POST /rmm_alerts - Creates an RMM Alert
-* [ ] POST /rmm_alerts/{id}/mute - Mutes an RMM Alert by ID
-* [ ] GET /rmm_alerts/{id} - Retrieves an RMM Alert by ID
-* [ ] DELETE /rmm_alerts/{id} - Deletes/Clears an RMM Alert by ID
+* [x] GET /rmm_alerts - Returns a paginated list of RMM Alerts
+* [x] POST /rmm_alerts - Creates an RMM Alert
+* [x] POST /rmm_alerts/{id}/mute - Mutes an RMM Alert by ID
+* [x] GET /rmm_alerts/{id} - Retrieves an RMM Alert by ID
+* [x] DELETE /rmm_alerts/{id} - Deletes/Clears an RMM Alert by ID
 
 ### Schedule
 

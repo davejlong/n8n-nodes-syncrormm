@@ -1,6 +1,7 @@
 import { INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { SyncroPagination } from './utilities/GenericFunctions';
 
+import * as Alerts from './actions/alerts';
 import * as Assets from './actions/assets';
 import * as Customers from './actions/customers';
 import * as Users from './actions/users';
@@ -44,10 +45,10 @@ export class SyncroRmm implements INodeType {
 				type: 'options',
 				noDataExpression: true,
 				options: [
-					// {
-					// 	name: 'Alert',
-					// 	value: 'alerts',
-					// },
+					{
+						name: 'Alert',
+						value: 'alerts',
+					},
 					{
 						name: 'Asset',
 						value: 'assets',
@@ -75,6 +76,7 @@ export class SyncroRmm implements INodeType {
 				],
 				default: 'customers',
 			},
+			...Alerts.description,
 			...Assets.description,
 			...Customers.description,
 			...Users.description,

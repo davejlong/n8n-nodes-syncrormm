@@ -79,7 +79,7 @@ export const description: INodeProperties[] = [
 							{
 								type: 'rootProperty',
 								properties: {
-									property: 'properties',
+									property: 'asset',
 								},
 							},
 						],
@@ -110,7 +110,7 @@ export const description: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['assets'],
-				operation: ['get'],
+				operation: ['get', 'update'],
 			},
 		},
 	},

@@ -16,18 +16,50 @@ export const LoadOptions: { [key: string]: ILoadOptions } = {
 						},
 					},
 					{
+						type: 'sort',
+						properties: {
+							key: 'name',
+						},
+					},
+					{
 						type: 'setKeyValue',
 						properties: {
 							name: "={{ $responseItem.name }}",
 							value: "={{ $responseItem.name }}",
 						},
 					},
+				],
+			},
+		},
+	},
+
+	GetAssetCustomFields: {
+		routing: {
+			request: {
+				method: 'GET',
+				url: '/settings',
+			},
+			output: {
+				postReceive: [
 					{
-						type: 'sort',
+						type: 'rootProperty',
 						properties: {
-							key: 'name',
+							property: 'assets.asset_type_fields',
+						}
+					},
+					{
+						type: 'filter',
+						properties: {
+							pass: "={{($parameter.assetTypeId ? $responseItem.asset_type_id == $parameter.assetTypeId : true)",
 						},
 					},
+					{
+						type: 'setKeyValue',
+						properties: {
+							name: "={{ $responseItem.name }}",
+							value: "={{ $responseItem.name }}",
+						},
+					}
 				],
 			},
 		},
